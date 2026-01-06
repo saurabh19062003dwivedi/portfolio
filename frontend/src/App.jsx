@@ -221,7 +221,7 @@ const Portfolio = () => {
         />
       </div>
 
-      {/* Floating Nav */}
+   {/* Floating Nav */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-black/40 backdrop-blur-2xl border border-purple-500/20 rounded-full">
         <div className="flex items-center gap-8">
           <div className="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SD</div>
@@ -236,11 +236,31 @@ const Portfolio = () => {
               </button>
             ))}
           </div>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden text-gray-400" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex items-center justify-center">
+          <div className="flex flex-col items-center gap-8">
+            {['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => (
+              <button
+                key={item}
+                onClick={() => {
+                  scrollToSection(item.toLowerCase());
+                  setIsMenuOpen(false);
+                }}
+                className="text-3xl font-bold text-gray-400 hover:text-purple-400 transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-20">
